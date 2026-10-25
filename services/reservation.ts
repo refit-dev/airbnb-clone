@@ -183,7 +183,7 @@ export const createPaymentSession = async ({
     name: "Listing",
     images: [listing.imageSrc],
     default_price_data: {
-      currency: "USD",
+      currency: "usd",
       unit_amount: totalPrice * 100
     }
   })
@@ -191,7 +191,7 @@ export const createPaymentSession = async ({
   const stripeSession = await stripe.checkout.sessions.create({
     success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/trips`,
     cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/listings/${listing.id}`,
-    payment_method_types: ['card'],
+    allowed_payment_method_types: ['card'],
     mode: 'payment',
     shipping_address_collection: {
       allowed_countries: ["DE", "US", "NP", "CH", "BH", "AU"],
